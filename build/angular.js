@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v1.7.4-local+sha.5fecd92
+ * @license AngularJS v1.7.5-local+sha.554e8de
  * (c) 2010-2018 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -99,7 +99,7 @@ function isValidObjectMaxDepth(maxDepth) {
 function minErr(module, ErrorConstructor) {
   ErrorConstructor = ErrorConstructor || Error;
 
-  var url = 'https://errors.angularjs.org/1.7.4-local+sha.5fecd92/';
+  var url = 'https://errors.angularjs.org/1.7.5-local+sha.554e8de/';
   var regex = url.replace('.', '\\.') + '[\\s\\S]*';
   var errRegExp = new RegExp(regex, 'g');
 
@@ -931,15 +931,16 @@ function arrayRemove(array, value) {
  * * If `source` is identical to `destination` an exception will be thrown.
  *
  * <br />
+ *
  * <div class="alert alert-warning">
  *   Only enumerable properties are taken into account. Non-enumerable properties (both on `source`
  *   and on `destination`) will be ignored.
  * </div>
  *
- * @param {*} source The source that will be used to make a copy.
- *                   Can be any type, including primitives, `null`, and `undefined`.
- * @param {(Object|Array)=} destination Destination into which the source is copied. If
- *     provided, must be of the same type as `source`.
+ * @param {*} source The source that will be used to make a copy. Can be any type, including
+ *     primitives, `null`, and `undefined`.
+ * @param {(Object|Array)=} destination Destination into which the source is copied. If provided,
+ *     must be of the same type as `source`.
  * @returns {*} The copy or updated `destination`, if `destination` was specified.
  *
  * @example
@@ -2786,10 +2787,10 @@ function toDebugString(obj, maxDepth) {
 var version = {
   // These placeholder strings will be replaced by grunt's `build` task.
   // They need to be double- or single-quoted.
-  full: '1.7.4-local+sha.5fecd92',
+  full: '1.7.5-local+sha.554e8de',
   major: 1,
   minor: 7,
-  dot: 4,
+  dot: 5,
   codeName: 'snapshot'
 };
 
@@ -2939,7 +2940,7 @@ function publishExternalAPI(angular) {
       });
     }
   ])
-  .info({ angularVersion: '1.7.4-local+sha.5fecd92' });
+  .info({ angularVersion: '1.7.5-local+sha.554e8de' });
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -20353,7 +20354,7 @@ function $SceDelegateProvider() {
       // If we get here, then we will either sanitize the value or throw an exception.
       if (type === SCE_CONTEXTS.MEDIA_URL || type === SCE_CONTEXTS.URL) {
         // we attempt to sanitize non-resource URLs
-        return $$sanitizeUri(maybeTrusted, type === SCE_CONTEXTS.MEDIA_URL);
+        return $$sanitizeUri(maybeTrusted.toString(), type === SCE_CONTEXTS.MEDIA_URL);
       } else if (type === SCE_CONTEXTS.RESOURCE_URL) {
         if (isResourceUrlAllowedByPolicy(maybeTrusted)) {
           return maybeTrusted;
@@ -27864,6 +27865,8 @@ function classDirective(name, selector) {
   }
 
   function toClassString(classValue) {
+    if (!classValue) return classValue;
+
     var classString = classValue;
 
     if (isArray(classValue)) {
@@ -27872,6 +27875,8 @@ function classDirective(name, selector) {
       classString = Object.keys(classValue).
         filter(function(key) { return classValue[key]; }).
         join(' ');
+    } else if (!isString(classValue)) {
+      classString = classValue + '';
     }
 
     return classString;
