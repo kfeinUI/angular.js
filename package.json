@@ -1,10 +1,10 @@
 {
-  "name": "angular",
+  "name": "@vbrick/angularjs",
   "main": "./index.js",
   "license": "MIT",
   "branchVersion": "^1.7.0",
   "branchPattern": "1.7.*",
-  "version": "1.7.3",
+  "version": "1.7.4-beta.2",
   "distTag": "next",
   "repository": {
     "type": "git",
