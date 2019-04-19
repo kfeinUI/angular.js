@@ -4,7 +4,7 @@
   "license": "MIT",
   "branchVersion": "^1.7.0",
   "branchPattern": "1.7.*",
-  "version": "1.7.7",
+  "version": "1.7.8",
   "distTag": "next",
   "repository": {
     "type": "git",
